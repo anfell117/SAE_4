@@ -57,7 +57,7 @@ CREATE TABLE animateur(
                           disponibilité BOOLEAN,
                           id_adresse INT NOT NULL,
                           PRIMARY KEY(id_animateur),
-                          FOREIGN KEY(id_adresse) REFERENCES adresse(id_adresse)
+                          FOREIGN KEY(adresse_id) REFERENCES adresse(id_adresse)
 );
 
 CREATE TABLE animation(
@@ -68,8 +68,8 @@ CREATE TABLE animation(
                           id_atelier INT NOT NULL,
                           id_adresse INT NOT NULL,
                           PRIMARY KEY(id_animation),
-                          FOREIGN KEY(id_atelier) REFERENCES atelier(id_atelier),
-                          FOREIGN KEY(id_adresse) REFERENCES adresse(id_adresse)
+                          FOREIGN KEY(atelier_id) REFERENCES atelier(id_atelier),
+                          FOREIGN KEY(adresse_id) REFERENCES adresse(id_adresse)
 );
 
 CREATE TABLE participant(
@@ -81,7 +81,7 @@ CREATE TABLE participant(
                             present BOOLEAN,
                             id_adresse INT NOT NULL,
                             PRIMARY KEY(id_participant),
-                            FOREIGN KEY(id_adresse) REFERENCES adresse(id_adresse)
+                            FOREIGN KEY(adresse_id) REFERENCES adresse(id_adresse)
 );
 
 CREATE TABLE animer(
