@@ -27,12 +27,6 @@ def teardown_db(exception):
     if db is not None:
         db.close()
 
-
-# Convention des noms de colonnes :
-#   clé primaire   -> id_adresse, id_atelier, id_animateur, ...
-#   clé étrangère  -> adresse_id, atelier_id, animateur_id, ...
-
-
 # ============== ANIMATEUR ==============
 @app.route('/')
 @app.route('/animateur/show')

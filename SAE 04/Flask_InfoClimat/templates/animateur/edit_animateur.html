@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layout.html' %}
 
-</body>
-</html>
+{% block title %}
+<title>Modifier un arbre</title>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+
+    <h1>Modifier un arbre</h1>
+
+    <form action="/arbre/edit" method="post">
+
+        <input type="hidden" name="id" value="{{ arbre.id }}">
+
+        <div class="mb-3">
+            <label for="nomArbre" class="form-label">Nom</label>
+            <input type="text" name="nomArbre" id="nomArbre"
+                   class="form-control" value="{{ arbre.nomArbre }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="hauteurMaxi" class="form-label">Hauteur maximale</label>
+            <input type="number" name="hauteurMaxi" id="hauteurMaxi"
+                   class="form-control" value="{{ arbre.hauteurMaxi }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="datePlantation" class="form-label">Date de plantation</label>
+            <input type="date" name="datePlantation" id="datePlantation"
+                   class="form-control" value="{{ arbre.datePlantation }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="prixM3" class="form-label">Prix au m³</label>
+            <input type="number" name="prixM3" id="prixM3"
+                   class="form-control" value="{{ arbre.prixM3 }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="surfacePlantation" class="form-label">Surface de plantation</label>
+            <input type="number" name="surfacePlantation" id="surfacePlantation"
+                   class="form-control" value="{{ arbre.surfacePlantation }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="localisation" class="form-label">Localisation</label>
+            <input type="text" name="localisation" id="localisation"
+                   class="form-control" value="{{ arbre.localisation }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="typeArbre_id" class="form-label">Type d'arbre</label>
+            <select name="typeArbre_id" id="typeArbre_id" class="form-select champ-cle-etrangere" required>
+                {% for typeArbre in typesArbre %}
+                <option value="{{ typeArbre.id }}"
+                    {% if typeArbre.id == arbre.typeArbre_id %}selected{% endif %}>
+                    {{ typeArbre.designation }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="text" name="image" id="image"
+                   class="form-control" value="{{ arbre.image }}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+    </form>
+
+</div>
+{% endblock %}

@@ -1,10 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layout.html' %}
 
-</body>
-</html>
+{% block title %}
+<title>Liste des arbres</title>
+{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+
+    <h1>Liste des arbres</h1>
+
+    <a href="/arbre/add" class="btn btn-success mb-3">
+        Ajouter un arbre
+    </a>
+
+    {% if arbres | length >= 1 %}
+    <table class="table table-striped table-bordered">
+        <thead class="table">
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Hauteur</th>
+                <th>Date</th>
+                <th>Prix au m³</th>
+                <th>Localisation</th>
+                <th>Type</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for arbre in arbres %}
+            <tr>
+                <td>{{ arbre.id }}</td>
+                <td>{{ arbre.nomArbre }}</td>
+                <td>{{ arbre.hauteurMaxi }}</td>
+                <td>{{ arbre.datePlantation }}</td>
+                <td>{{ arbre.prixM3 }}</td>
+                <td>{{ arbre.localisation }}</td>
+                <td class="text-danger fw-bold">{{ arbre.typeArbre_id }}</td>
+                <td>
+                    <img src="/static/images/{{ arbre.image }}"
+                         alt="{{ arbre.nomArbre }}"
+                         width="100">
+                </td>
+                <td>
+                    <a href="/arbre/edit?id={{ arbre.id }}"
+                       class="btn btn-success btn-sm">
+                        Éditer
+                    </a>
+
+                    <a href="/arbre/delete?id={{ arbre.id }}"
+                       class="btn btn-danger btn-sm">
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <h2>La liste des arbres est vide</h2>
+    {% endif %}
+
+</div>
+{% endblock %}

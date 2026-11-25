@@ -1,10 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block title %}
+<title>Gestion des arbres</title>
+{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+  <h2 class="mb-4">Formulaire animateurs</h2>
+
+  <form action="/arbre/add" method="post">
+
+    <div class="mb-3">
+      <label for="nomArbre" class="form-label">Nom animateur</label>
+      <input type="text" class="form-control"
+             id="nomArbre" name="nomArbre" value="" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="hauteurMaxi" class="form-label">Hauteur maximale</label>
+      <input type="number" class="form-control"
+             id="hauteurMaxi" name="hauteurMaxi" value="">
+    </div>
+
+    <div class="mb-3">
+      <label for="datePlantation" class="form-label">Date de plantation</label>
+      <input type="date" class="form-control"
+             id="datePlantation" name="datePlantation" value="">
+    </div>
+
+    <div class="mb-3">
+      <label for="prixM3" class="form-label">Prix au m³</label>
+      <input type="number" class="form-control"
+             id="prixM3" name="prixM3" value="">
+    </div>
+
+    <div class="mb-3">
+      <label for="surfacePlantation" class="form-label">Surface de plantation</label>
+      <input type="number" class="form-control"
+             id="surfacePlantation" name="surfacePlantation" value="">
+    </div>
+
+    <div class="mb-3">
+      <label for="localisation" class="form-label">Localisation</label>
+      <input type="text" class="form-control"
+             id="localisation" name="localisation" value="">
+    </div>
+
+    <div class="mb-3">
+      <label for="typeArbre_id" class="form-label">Type d'arbre</label>
+      <select class="form-select champ-cle-etrangere" name="typeArbre_id"
+              id="typeArbre_id" required>
+        <option value="">Sélectionner un type d'arbre</option>
+        {% for typeArbre in typesArbre %}
+          <option value="{{ typeArbre.id }}">
+            {{ typeArbre.designation }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Image</label>
+      <input type="text" class="form-control"
+             id="image" name="image" value="">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+
+  </form>
+</div>
+{% endblock %}
